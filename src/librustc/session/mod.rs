@@ -823,11 +823,11 @@ impl Session {
         }
     }
 
-    pub fn profiler<F: FnOnce(&mut SelfProfiler) -> ()>(&self, f: F) {
-        if self.opts.debugging_opts.self_profile || self.opts.debugging_opts.profile_json {
-            let mut profiler = self.self_profiling.borrow_mut();
-            f(&mut profiler);
-        }
+    pub fn profiler<F: FnOnce(&mut SelfProfiler) -> ()>(&self, _f: F) {
+        //if self.opts.debugging_opts.self_profile || self.opts.debugging_opts.profile_json {
+        //    let mut profiler = self.self_profiling.borrow_mut();
+        //    f(&mut profiler);
+        //}
     }
 
     pub fn print_profiler_results(&self) {
@@ -886,7 +886,7 @@ impl Session {
     /// Returns the number of query threads that should be used for this
     /// compilation
     pub fn query_threads_from_opts(opts: &config::Options) -> usize {
-        opts.debugging_opts.query_threads.unwrap_or(1)
+        opts.debugging_opts.query_threads.unwrap_or(4)
     }
 
     /// Returns the number of query threads that should be used for this
